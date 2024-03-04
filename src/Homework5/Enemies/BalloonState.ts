@@ -1,5 +1,6 @@
 import State from "../../Wolfie2D/DataTypes/State/State";
 import StateMachine from "../../Wolfie2D/DataTypes/State/StateMachine";
+import Vec2 from "../../Wolfie2D/DataTypes/Vec2";
 import GameEvent from "../../Wolfie2D/Events/GameEvent";
 import GameNode from "../../Wolfie2D/Nodes/GameNode";
 import AnimatedSprite from "../../Wolfie2D/Nodes/Sprites/AnimatedSprite";
@@ -12,6 +13,8 @@ export default abstract class BalloonState extends State {
 	owner: GameNode;
 	gravity: number = 500;
 	parent: BalloonController;
+	//add player position property
+	playerPosition: Vec2 = Vec2.ZERO;
 
 	constructor(parent: StateMachine, owner: GameNode) {
 		super(parent);
@@ -50,6 +53,10 @@ export default abstract class BalloonState extends State {
 					}
 				} 
 			}
+		}
+		//else if player move
+		else if (event.type==HW5_Events.PLAYER_MOVE){
+			 this.playerPosition=event.data.get("position");
 		}
 	}
 

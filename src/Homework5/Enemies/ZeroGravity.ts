@@ -22,9 +22,65 @@ import BalloonState from "./BalloonState";
  */
 export default class ZeroGravity extends BalloonState {
 	onEnter(): void {
+		this.parent.velocity.y = 0;
+		this.gravity=0;
+
+
+		//this.parent.velocity.x = this.parent.direction.x * this.parent.speed;
+
+		
+		(<AnimatedSprite>this.owner).animation.play("IDLE", true);
 	}
 
+	update(deltaT: number): void {
+		super.update(deltaT);
+
+        this.parent.velocity.x = this.parent.direction.x * this.parent.speed;
+		//this.playerPosition this.parent.position
+
+		let dx = this.playerPosition.x - this.parent.owner.position.x;
+		let distance = Math.abs(dx);
+		
+		if (distance < 10 * 16 * 2) {
+			// The distance between the player and the parent is less than 10
+			this.parent.velocity.x=this.parent.velocity.x*2;
+
+		}
+
+		this.owner.move(this.parent.velocity.scaled(deltaT));
+	}
+
+
+
 	onExit(): Record<string, any> {
+		(<AnimatedSprite>this.owner).animation.stop();
 		return {};
 	}
 }
+	
+///Reference
+
+/*
+export default class Rising extends BalloonState {
+	
+	onEnter(): void {
+        this.gravity = -this.parent.gravity;
+
+		(<AnimatedSprite>this.owner).animation.play("IDLE", true);
+	}
+
+	update(deltaT: number): void {
+		super.update(deltaT);
+
+		this.parent.velocity.x = this.parent.direction.x * this.parent.speed;
+
+		this.owner.move(this.parent.velocity.scaled(deltaT));
+	}
+
+	onExit(): Record<string, any> {
+		(<AnimatedSprite>this.owner).animation.stop();
+		return {};
+	}
+}
+
+*/
