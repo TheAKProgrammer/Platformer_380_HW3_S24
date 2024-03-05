@@ -153,6 +153,9 @@ export default class GameLevel extends Scene {
                             particleMass = 3;
                         }
                         this.system.startSystem(2000, particleMass, node.position.clone());
+                        //fire sound effect.
+
+                        this.emitter.fireEvent(GameEventType.PLAY_SOUND, {key: "pop", loop: false});
                         node.destroy();
                     }
                     break;
@@ -384,8 +387,13 @@ export default class GameLevel extends Scene {
         balloon.position.set(tilePos.x*32, tilePos.y*32);
         balloon.scale.set(2, 2);
         balloon.addPhysics();
+        //add trigger for bln hit
+        balloon.setTrigger("player",HW5_Events.PLAYER_HIT_BALLOON,null);
+
+
         balloon.addAI(BalloonController, aiOptions);
         balloon.setGroup("balloon");
+        balloon.setTrigger("player",HW5_Events.PLAYER_HIT_BALLOON,null);
 
     }
 
@@ -416,6 +424,32 @@ export default class GameLevel extends Scene {
      * 
      */
     protected handlePlayerBalloonCollision(player: AnimatedSprite, balloon: AnimatedSprite) {
+        console.log("hit");
+
+        if(balloon==undefined){
+            return;
+
+        }
+
+        
+            if((<PlayerController>player._ai).suitColor != (<BalloonController>balloon._ai).color){
+                this.incPlayerLife(-1);
+
+            }
+
+            if((<BalloonController>balloon._ai).color === HW5_Color.RED){
+                this.system.changeColor(Color.RED);
+            }else if((<BalloonController>balloon._ai).color ===HW5_Color.GREEN){
+                this.system.changeColor(Color.GREEN);
+            }else{
+                this.system.changeColor(Color.BLUE);
+            }
+
+            this.emitter.fireEvent(HW5_Events.BALLOON_POPPED,{owner: (<BalloonController>balloon._ai).owner.id});
+
+        
+
+
     }
 
     /**

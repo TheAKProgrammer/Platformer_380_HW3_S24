@@ -23,6 +23,7 @@ export default class Level1 extends GameLevel {
         // HOMEWORK 5 - TODO
         // You'll want to change this to your level music
         this.load.audio("level_music", "hw5_assets/music/menu.mp3");
+        this.load.audio("pop","hw5_assets/sounds/pop.wav")
     }
 
     // HOMEWORK 5 - TODO
