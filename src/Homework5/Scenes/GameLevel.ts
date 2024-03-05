@@ -426,12 +426,7 @@ export default class GameLevel extends Scene {
     protected handlePlayerBalloonCollision(player: AnimatedSprite, balloon: AnimatedSprite) {
         console.log("hit");
 
-        if(balloon==undefined){
-            return;
-
-        }
-
-        
+        if(balloon!=undefined){
             if((<PlayerController>player._ai).suitColor != (<BalloonController>balloon._ai).color){
                 this.incPlayerLife(-1);
 
@@ -446,6 +441,11 @@ export default class GameLevel extends Scene {
             }
 
             this.emitter.fireEvent(HW5_Events.BALLOON_POPPED,{owner: (<BalloonController>balloon._ai).owner.id});
+
+        }
+
+        
+
 
         
 
