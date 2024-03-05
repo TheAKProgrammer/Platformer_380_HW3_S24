@@ -443,6 +443,7 @@ export default class GameLevel extends Scene {
             this.emitter.fireEvent(HW5_Events.BALLOON_POPPED,{owner: (<BalloonController>balloon._ai).owner.id});
 
         }
+        return;
 
         
 
