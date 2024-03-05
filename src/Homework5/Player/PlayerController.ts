@@ -71,6 +71,30 @@ export default class PlayerController extends StateMachineAI {
             ]
         });
 
+        owner.tweens.add("death", {
+            startDelay: 0,
+            duration: 500,
+            effects: [
+                {
+                    property: TweenableProperties.rotation,
+                    start: 0,
+                    end: 2*Math.PI,
+                    ease: EaseFunctionType.IN_OUT_QUAD
+                },
+
+                {
+                    property: TweenableProperties.alpha,
+                    start: 1,
+                    end: 0,
+                    ease: EaseFunctionType.IN_OUT_QUAD
+                }
+
+                
+            ]
+        });
+
+
+
     }
 
     initializePlatformer(): void {
