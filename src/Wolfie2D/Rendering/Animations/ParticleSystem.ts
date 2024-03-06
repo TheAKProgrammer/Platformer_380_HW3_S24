@@ -144,6 +144,19 @@ export default class ParticleSystem implements Updateable {
                     if (particle.age <= 0) {
                         particle.setParticleInactive();
                     }
+                    //add accell
+
+                    //Add to the velocity
+                    //particle.vel.y += ;
+                    //this.particleMass
+                    //__________________________________________________
+                    particle.vel.y += (this.particleMass*10);
+                    
+
+
+
+
+                    //___________________________________________
 
                     particle.move(particle.vel.scaled(deltaT));
                 }

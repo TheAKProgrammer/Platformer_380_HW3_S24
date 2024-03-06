@@ -199,8 +199,9 @@ export default class GameLevel extends Scene {
                         }
                     }
                     break;
-                case HW5_Events.PLAYER_KILLED:
+                case HW5_Events.PLAYER_KILLED: //Fire this event
                     {
+                        //
                         this.respawnPlayer();
                     }
 
@@ -472,6 +473,7 @@ export default class GameLevel extends Scene {
      * Returns the player to spawn
      */
     protected respawnPlayer(): void {
+        //
         GameLevel.livesCount = 3;
         this.emitter.fireEvent(GameEventType.STOP_SOUND, {key: "level_music"});
         this.sceneManager.changeToScene(MainMenu, {});

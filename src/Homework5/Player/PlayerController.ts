@@ -88,7 +88,9 @@ export default class PlayerController extends StateMachineAI {
                     end: 0,
                     ease: EaseFunctionType.IN_OUT_QUAD
                 }
-
+                //add onEnd event string using the HW5_Events.PLAYER_KILLED
+                
+            
                 
             ]
         });

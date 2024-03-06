@@ -21,5 +21,49 @@ export default class HW5_ParticleSystem extends ParticleSystem {
 
     setParticleAnimation(particle: Particle) {
         super.setParticleAnimation(particle);
+        //add other tweens alpha
+        //lifetime
+        particle.tweens.add("active", {
+            startDelay: 0,
+            duration: this.lifetime,
+            effects: [{
+
+                //property: TweenableProperties.alpha,
+                property: "alpha",
+                start: 1,
+                end: 0,
+                ease: EaseFunctionType.IN_OUT_QUAD
+            }
+                
+
+
+            ]//set effect for alphq
+        });
+/*
+        owner.tweens.add("death", {
+            startDelay: 0,
+            duration: lifetime,
+            effects: [
+                {
+                    property: TweenableProperties.rotation,
+                    start: 0,
+                    end: 2*Math.PI,
+                    ease: EaseFunctionType.IN_OUT_QUAD
+                },
+
+                {
+                    property: TweenableProperties.alpha,
+                    start: 1,
+                    end: 0,
+                    ease: EaseFunctionType.IN_OUT_QUAD
+                }
+                //add onEnd event string
+            
+                
+            ]
+        });
+
+        */
     }
+
 }
