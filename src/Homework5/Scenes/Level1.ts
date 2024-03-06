@@ -23,7 +23,8 @@ export default class Level1 extends GameLevel {
         // HOMEWORK 5 - TODO
         // You'll want to change this to your level music
         //this.load.audio("level_music", "hw5_assets/music/menu.mp3");
-        this.load.audio("level_music", "hw5_assets/music/menu.mp3"); //Change the path to your music
+        //this.load.audio("level_music", "hw5_assets/music/menu.mp3"); //Change the path to your music
+        this.load.audio("music", "hw5_assets/music/music.wav"); //Change the path to your music
         this.load.audio("pop","hw5_assets/sounds/pop.wav")
     }
 
@@ -69,7 +70,8 @@ export default class Level1 extends GameLevel {
         for(let pos of [new Vec2(20, 3), new Vec2(41,4), new Vec2(3, 4)]){
             this.addBalloon("blue", pos, {color: HW5_Color.BLUE});
         }
-        this.emitter.fireEvent(GameEventType.PLAY_SOUND, {key: "level_music", loop: true, holdReference: true});
+        //this.emitter.fireEvent(GameEventType.PLAY_SOUND, {key: "level_music", loop: true, holdReference: true});
+        this.emitter.fireEvent(GameEventType.PLAY_SOUND, {key: "music", loop: true, holdReference: true});
     }
 
     updateScene(deltaT: number): void {
